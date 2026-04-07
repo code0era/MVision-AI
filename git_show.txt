@@ -1,0 +1,126 @@
+commit ebf960bc4258a909e9312ab7de577331e2a561a6
+Author: Shubham yadav <140435929+code0era@users.noreply.github.com>
+Date:   Tue Apr 7 21:33:05 2026 +0530
+
+    Update app.py and packages.txt, remove old reports
+
+diff --git a/Mission_Report_032325.pdf b/Mission_Report_032325.pdf
+deleted file mode 100644
+index e245bd5..0000000
+--- a/Mission_Report_032325.pdf
++++ /dev/null
+@@ -1,18 +0,0 @@
+-           CONFIDENTIAL - MISSION REPORT
+-
+-Generated: 2026-01-09 03:23:25
+-
+-   Class               Confidence   Status
+-    Ship                 27.36%    Detected
+-    Ship                 11.61%    Detected
+-    Ship                 11.45%    Detected
+-  Bridge                  7.56%    Detected
+-Fighter_jet               7.26%    Detected
+-Fighter_jet               6.79%    Detected
+-  Helipad                 6.28%    Detected
+-    Ship                  6.16%    Detected
+-    Ship                  5.83%    Detected
+-    Ship                  5.61%    Detected
+-
+-Surveillance Imagery:
+-
+diff --git a/Mission_Report_032446.pdf b/Mission_Report_032446.pdf
+deleted file mode 100644
+index d499527..0000000
+--- a/Mission_Report_032446.pdf
++++ /dev/null
+@@ -1,16 +0,0 @@
+-           CONFIDENTIAL - MISSION REPORT
+-
+-Generated: 2026-01-09 03:24:46
+-
+-   Class               Confidence   Status
+-   Tank                  26.09%    Detected
+-    Ship                 18.52%    Detected
+-   Tank                  14.74%    Detected
+-Fighter_jet              11.11%    Detected
+-   Tank                  10.51%    Detected
+-   Tank                   9.37%    Detected
+-    Ship                  7.25%    Detected
+-   Tank                   5.61%    Detected
+-
+-Surveillance Imagery:
+-
+diff --git a/Mission_Report_033334.pdf b/Mission_Report_033334.pdf
+deleted file mode 100644
+index e22093c..0000000
+--- a/Mission_Report_033334.pdf
++++ /dev/null
+@@ -1,21 +0,0 @@
+-           CONFIDENTIAL - MISSION REPORT
+-
+-Generated: 2026-01-09 03:33:34
+-
+-Class                  Confidence   Status
+-Ship                     63.00%    Detected
+-Ship                     57.20%    Detected
+-Ship                     56.41%    Detected
+-Ship                     53.24%    Detected
+-Ship                     51.63%    Detected
+-Ship                     43.28%    Detected
+-Ship                     18.09%    Detected
+-Ship                     16.62%    Detected
+-Ship                      8.50%    Detected
+-Ship                      7.21%    Detected
+-Ship                      6.86%    Detected
+-Ship                      6.49%    Detected
+-Ship                      5.37%    Detected
+-
+-Surveillance Imagery:
+-
+diff --git a/Mission_Report_222012.pdf b/Mission_Report_222012.pdf
+deleted file mode 100644
+index 7a0ffd4..0000000
+--- a/Mission_Report_222012.pdf
++++ /dev/null
+@@ -1,13 +0,0 @@
+-           CONFIDENTIAL - MISSION REPORT
+-
+-Generated: 2026-01-08 22:20:12
+-
+-Class                  Confidence   Status
+-Ship                     63.00%    Detected
+-Ship                     57.20%    Detected
+-Ship                     56.41%    Detected
+-Ship                     53.24%    Detected
+-Ship                     51.63%    Detected
+-
+-Surveillance Imagery:
+-
+diff --git a/app.py b/app.py
+index f015fbd..13938e3 100644
+--- a/app.py
++++ b/app.py
+@@ -1,3 +1,12 @@
++import sys
++import subprocess
++try:
++    from importlib.metadata import version
++    if version("opencv-python"):
++        subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python"])
++        subprocess.run([sys.executable, "-m", "pip", "install", "--force-reinstall", "--no-deps", "opencv-python-headless"])
++except Exception:
++    pass
+ 
+ import streamlit as st
+ from ultralytics import YOLO
+diff --git a/packages.txt b/packages.txt
+index 823e179..97e8d98 100644
+--- a/packages.txt
++++ b/packages.txt
+@@ -1,4 +1,2 @@
+ libgl1
+-libsm6
+-libxext6
+-libxrender-dev
++libglib2.0-0
+\ No newline at end of file
