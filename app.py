@@ -1,3 +1,12 @@
+import sys
+import subprocess
+try:
+    from importlib.metadata import version
+    if version("opencv-python"):
+        subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "opencv-python"])
+        subprocess.run([sys.executable, "-m", "pip", "install", "--force-reinstall", "--no-deps", "opencv-python-headless"])
+except Exception:
+    pass
 
 import streamlit as st
 from ultralytics import YOLO
